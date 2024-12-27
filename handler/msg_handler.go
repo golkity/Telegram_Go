@@ -9,7 +9,7 @@ import (
 func HandleMessages(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	if update.Message.IsCommand() {
 		switch update.Message.Command() {
-		case "start":
+		case "/start":
 			commands.Start_com(bot, update)
 		default:
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Unknown command")
