@@ -27,7 +27,7 @@ func main() {
 	u.Timeout = 60
 	updates := bot.GetUpdatesChan(u)
 	for update := range updates {
-		if update.Message != nil {
+		if update.Message == nil {
 			continue
 		}
 		handler.HandleMessages(bot, update)
