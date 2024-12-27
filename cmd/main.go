@@ -7,6 +7,7 @@ import (
 	"os"
 	"tgbot/Errors"
 	"tgbot/config"
+	"tgbot/handler"
 )
 
 func main() {
@@ -27,10 +28,8 @@ func main() {
 	updates := bot.GetUpdatesChan(u)
 	for update := range updates {
 		if update.Message != nil {
-			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
-
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
-			bot.Send(msg)
+			continue
 		}
+		handler.HandleMessages(bot, update)
 	}
 }
