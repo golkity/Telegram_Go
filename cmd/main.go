@@ -7,6 +7,8 @@ import (
 	"os"
 	"tgbot/Errors"
 	"tgbot/config"
+	"tgbot/handler"
+	"time"
 )
 
 func main() {
@@ -28,6 +30,17 @@ func main() {
 	for update := range updates {
 		if update.Message == nil {
 			continue
+		}
+		if update.Message != nil {
+			handled, messageID := handler.HandlerCommands(bot, update)
+			if handled {
+				go func() {
+					time.Sleep(5 * time.Second)
+					deleteMsg := tgbotapi.NewDeleteMessage(update.Message.Chat.ID, messageID)
+					bot.Request(deleteMsg)
+				}()
+				continue
+			}
 		}
 	}
 }
