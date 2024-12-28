@@ -7,7 +7,6 @@ import (
 	"os"
 	"tgbot/Errors"
 	"tgbot/config"
-	"tgbot/handler"
 )
 
 func main() {
@@ -30,6 +29,5 @@ func main() {
 		if update.Message == nil {
 			continue
 		}
-		handler.HandleMessages(bot, update)
 	}
 }
