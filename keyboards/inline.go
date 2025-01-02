@@ -10,6 +10,7 @@ func StartInline() tgbotapi.InlineKeyboardMarkup {
 		),
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Добавить акцию", "add"),
+			tgbotapi.NewInlineKeyboardButtonData("Анализ акций", "analiz"),
 		),
 	)
 	return keyboard
