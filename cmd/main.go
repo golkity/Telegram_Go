@@ -27,15 +27,17 @@ func main() {
 	u.Timeout = 60
 	updates := bot.GetUpdatesChan(u)
 	for update := range updates {
-		if update.Message == nil {
-			continue
-		}
-		if handlers.Start(bot, update) {
+		if update.CallbackQuery != nil {
+			handlers.StartCallback(bot, update)
 			continue
 		}
 
-		if update.CallbackQuery != nil {
-			handlers.StartCallback(bot, update)
+		if update.Message == nil {
+			continue
+		}
+
+		if handlers.Start(bot, update) {
+			continue
 		}
 	}
 }
