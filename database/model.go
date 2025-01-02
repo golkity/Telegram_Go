@@ -7,6 +7,13 @@ type Stock struct {
 }
 
 type Portfolio struct {
-	Stock map[string]Stock
-	Total float64
+	Stocks map[string]Stock
+	Total  float64
+}
+
+type UserState struct {
+	State        string
+	StockName    string
+	StockPrice   float64
+	StockPercent float64
 }
