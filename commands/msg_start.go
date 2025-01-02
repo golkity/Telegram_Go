@@ -8,7 +8,6 @@ import (
 func Start(bot *tgbotapi.BotAPI, update tgbotapi.Update) (bool, int) {
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Добро пожаловать "+update.Message.From.FirstName+"!")
 	msg.ReplyMarkup = keyboards.StartInline()
-	bot.Send(msg)
 	sentMsg, err := bot.Send(msg)
 	if err != nil {
 		return false, 0

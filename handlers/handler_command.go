@@ -1,23 +1,21 @@
-package handler
+package handlers
 
 import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"tgbot/commands"
 )
 
-func HandlerCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) (bool, int) {
+func Start(bot *tgbotapi.BotAPI, update tgbotapi.Update) bool {
 	if update.Message.IsCommand() {
 		switch update.Message.Command() {
 		case "start":
 			commands.Start(bot, update)
+			return true
 		default:
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Что?")
-			sentMsg, err := bot.Send(msg)
-			if err != nil {
-				return false, 0
-			}
-			return true, sentMsg.MessageID
+			bot.Send(msg)
+			return false
 		}
 	}
-	return false, 0
+	return false
 }

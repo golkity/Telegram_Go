@@ -7,8 +7,7 @@ import (
 	"os"
 	"tgbot/Errors"
 	"tgbot/config"
-	"tgbot/handler"
-	"time"
+	"tgbot/handlers"
 )
 
 func main() {
@@ -31,16 +30,12 @@ func main() {
 		if update.Message == nil {
 			continue
 		}
-		if update.Message != nil {
-			handled, messageID := handler.HandlerCommands(bot, update)
-			if handled {
-				go func() {
-					time.Sleep(5 * time.Second)
-					deleteMsg := tgbotapi.NewDeleteMessage(update.Message.Chat.ID, messageID)
-					bot.Request(deleteMsg)
-				}()
-				continue
-			}
+		if handlers.Start(bot, update) {
+			continue
+		}
+
+		if update.CallbackQuery != nil {
+			handlers.StartCallback(bot, update)
 		}
 	}
 }
