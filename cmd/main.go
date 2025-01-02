@@ -39,5 +39,9 @@ func main() {
 		if handlers.Start(bot, update) {
 			continue
 		}
+		if update.Message != nil {
+			handlers.HandlerInput(bot, update.Message)
+			continue
+		}
 	}
 }
