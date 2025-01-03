@@ -1,5 +1,8 @@
 # Телеграмм бот для анализа акций
 
+![version](https://shields.microej.com/github/go-mod/go-version/golkity/Calc?style=for-the-badge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
 ![img_title](intro-bot.png)
 
 >[!IMPORTANT]
