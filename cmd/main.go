@@ -8,6 +8,7 @@ import (
 	"tgbot/Errors"
 	"tgbot/config"
 	"tgbot/handlers"
+	"tgbot/handlers/action"
 )
 
 func main() {
@@ -40,7 +41,7 @@ func main() {
 			continue
 		}
 		if update.Message != nil {
-			handlers.HandlerInput(bot, update.Message)
+			action.HandlerInput(bot, update.Message)
 			continue
 		}
 	}
